@@ -1,0 +1,380 @@
+FORMAT: 1A
+HOST: https://api.acommerceid.com/
+
+# Valkyrie Middleware
+
+Web services standard for aCommerce Channel Middleware.
+
+## Request Headers
+
+
+
+
+## Authentication [/login]
+
+Before making any request, client needs to send details about channel's API token or key.
+
+### Login [POST]
+
+Submit login information (username and password, or API key)
+
++ Request (application/json)
+
+        {
+            "apiKey" : "d46a5acb5210117746a087a1046bb22aedccd3e4"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJkNDZhNWFjYjUyMTAxMTc3NDZhMDg3YTEwNDZiYjIyYWVkY2NkM2U0In0.0I1PjGZ0QVL3yWzywZD2kzE9vTOpIxA7yfNJGfmqcXw"
+            }
+
++ Response 401 (application/json)
+   
+    + Body
+    
+            {
+                "message": "invalid key"
+            }
+
+## Products Collection [/products{?partnerId}]
+
+### List All Products [GET]
+
+Get all products from channel.
+
++ Parameters
+    + partnerId (number, optional) - ID of the Partner Number to filter on
+
++ Request
+
+    + Headers
+    
+            x-channel-token: {CHANNEL_TOKEN}
+            Authorization: Bearer {TOKEN}
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            X-Total-Count: 5000
+            
+
+    + Body
+    
+            [
+                {
+                    "sku" : "ABCDEFGH",
+                    "active" : true,
+                    "itemId" : "1234-1234",
+                    "brand" : "Mitsuzuyota",
+                    "type" : "group",
+                    "lastSyncCpms" : null,
+                    "lastSyncChannel" : null,
+                    "subBrand" : null,
+                    "model" : "K1528900",
+                    "manufacturer" : "Mitsuzuyota",
+                    "productId" : "B00HSHI9MO",
+                    "productIdType" : "ASIN",
+                    "productName" : "Test product",
+                    "productDescription" : "",
+                    "productHighlights" : [],
+                    "productDimension" : "7 x 3 x 16",
+                    "productWeight" : "0.6",
+                    "packageWeight" : "0.75",
+                    "packageLength" : "3",
+                    "packageWidth" : "7",
+                    "packageHeight" : "16",
+                    "productWarranty" : null,
+                    "categories" : [],
+                    "variations" : [],
+                    "dateCreated" : "2016-05-03T08:52:37.755Z",
+                    "dateUpdate" : null
+                }
+            ]
+
+### Create a New Product [POST]
+
+Create a new product to channel.
+
+
++ Request (application/json)
+
+    + Headers
+    
+            x-channel-token: {CHANNEL_TOKEN}
+            Authorization: Bearer {VALKYRIE_TOKEN}
+    
+    + Body
+
+            {
+                "sku" : "ABCDEFGH",
+                "active" : true,
+                "itemId" : "1234-1234",
+                "brand" : "Mitsuzuyota",
+                "type" : "group",
+                "lastSyncCpms" : null,
+                "lastSyncChannel" : null,
+                "subBrand" : null,
+                "model" : "K1528900",
+                "manufacturer" : "Mitsuzuyota",
+                "productId" : "B00HSHI9MO",
+                "productIdType" : "ASIN",
+                "productName" : "Test product",
+                "productDescription" : "",
+                "productHighlights" : [],
+                "productPrice" : "10000",
+                "productQty" : "3",
+                "productDimension" : "7 x 3 x 16",
+                "productWeight" : "0.6",
+                "packageWeight" : "0.75",
+                "packageLength" : "3",
+                "packageWidth" : "7",
+                "packageHeight" : "16",
+                "productWarranty" : null,
+                "categories" : 1001,
+                "variations" : [],
+                "dateCreated" : "2016-05-03T08:52:37.755Z",
+                "dateUpdate" : null,
+                "attributes": {
+                    "opticalDrive" : false,
+                    "ukuranHdd" : "2",
+                    "ukuranLayarLaptop" : "10”",
+                    "jumlahRam" : "4",
+                    "tipeProsesor" : "Pendulum 3"
+                },
+                "asDetail": "After service information address or contact",
+                "rtngExchDetail": "Return/Exchange information"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /products/2
+
+    + Body
+
+            {
+                "channelSku" : "ABCDEFGH"
+            }
+
+
+## Orders Collection [/orders]
+
+### List All Orders [GET]
+
+Get all orders from channel.
+
++ Request
+    + Headers
+        
+            x-channel-token: {CHANNEL_TOKEN}
+            Authorization: Bearer {TOKEN}
+
++ Response 200 (application/json)
+
+    + Headers
+    
+            X-Total-Count: 5000
+            
+    + Body
+
+            [
+                {
+                    "dateCreated": "2015-06-18T10:30:40Z",
+                    "orderId": "085695798275182",
+                    "paymentType": "CCOD",
+                    "shippingType": "STANDARD_2_4_DAYS",
+                    "grossTotal": 120000-,
+                    "currUnit": "IDR",
+                    "customer": {
+                        "addressee":"Cinta Andarini Puspaningrum",
+                        "address1":"Sahid Sudirman Center lantai 17 A Jl Jend Sudirman no 86",
+                        "postalCode":"10220",
+                        "country":"Indonesia",
+                        "phone":"(021) 27889210"
+                    },
+                    "shipmentInfo": {
+                        "addressee":"Cinta Andarini Puspaningrum",
+                        "address1":"Sahid Sudirman Center lantai 17 A",
+                        "address2":"Jl Jend Sudirman no 86",
+                        "subDistrict":"",
+                        "district":"Karet",
+                        "city":"Jakarta Pusat",
+                        "province":"DKI Jakarta",
+                        "postalCode":"10220",
+                        "country":"Indonesia",
+                        "phone":"(021) 27889210",
+                        "email":"cinta@acommerce.asia"
+                    },
+                    "items": [
+                        {
+                            "sku": "NIK64254110000000L",
+                            "qty": 2,
+                            "subTotal": 60000
+                        },
+                        {
+                            "sku": "NIK64254110000000M",
+                            "qty": 2,
+                            "subTotal": 60000
+                        }
+                    ]
+                }
+            ]
+
+
+### Update an Order's Status [PATCH]
+
+Update status of an order to market place
+
++ Request (application/json)
+
+    + Headers
+        
+            x-channel-token: {CHANNEL_TOKEN}
+            Authorization: Bearer {TOKEN}
+
+    + Body
+
+            {
+                "orderId" : "085695798275182",
+                "partnerId" : 306,
+                "orderStatus" : [
+                    {
+                        "orderStatus": "NEW",
+                        "updatedTime": "2015-11-17T08:26:38Z"
+                    },
+                    {
+                        "orderStatus": "IN_PROGRESS",
+                        "updatedTime": "2015-11-18T04:47:13Z"
+                    },
+                    {
+                        "orderStatus": "COMPLETED",
+                        "updatedTime": "2015-11-19T04:47:13Z"
+                    }
+                ],
+                "shipPackage" : [
+                    "statusHistory" : [
+                        {
+                            "shippingStatus": "PREPARING_DELIVERY",
+                            "updatedTime": "2015-11-17T09:19:56Z"
+                        },
+                        {
+                            "shippingStatus": "IN_TRANSIT",
+                            "trackingId" : "142054924480001",
+                            "updatedTime": "2015-11-18T09:19:56Z"
+                        },
+                        {
+                            "shippingStatus": "DELIVERED",
+                            "updatedTime": "2015-11-19T09:19:56Z"
+                        }
+                    ]
+                ]
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+    + Body
+
+            {
+                "orderId" : "085695798275182",
+                "orderStatus" : "IN_PROGRESS",
+                "shipStatus" : "IN_TRANSIT"
+            }
+
+## Accepting Orders [/orders/{orderId}/accept]
+
+### Accept an order [POST]
+
+Accept an order.
+
++ Parameters
+    + orderId (string, required) - ID of the order
+
+
++ Request
+    + Headers
+        
+            x-channel-token: {CHANNEL_TOKEN}
+            Authorization: Bearer {TOKEN}
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "message": "Order accepted"
+            }
+
+
+## Categories Collection [/categories]
+
+### Get categories [GET]
+
+Get categories and mappings. If "acommerce" is null then it's not mapped yet.
+
++ Response 200 (application/json)
+
+    + Body
+            
+            [
+                {
+                    "acommerce": 1231,
+                    "catId": 9886,
+                    "name": "Clothing & Accessories"
+                },
+                {
+                    "acommerce": 1232,
+                    "catId": 9889,
+                    "name": "Baby"
+                },
+                {
+                    "acommerce": null,
+                    "catId": 10004,
+                    "name": "Rain Wear"
+                }
+            ]
+
+## Category Mapping [/categories/{channel_category_id}/{acommerce_category_id}]
+
++ Parameters
+    + channel_category_id (number) - ID of the channel's category ID
+    + acommerce_category_id (number) - ID of aCommerce's category ID
+    
+### Update category mapping [POST]
+
+Set or replace categories mapping.
+
++ Response 200 (application/json)
+
+
+## Attributes Collection [/attributes]
+
+### Update attribute mapping database [POST]
+
+Set or replace attributes mapping.
+
++ Request (application/json)
+
+        [
+            {
+                "acommerce": "productName",
+                "elevenia": "prdNm"
+            },
+            {
+                "acommerce": "productDescription",
+                "elevenia": "htmlDetail"
+            },
+            {
+                "acommerce": "pproductWeight",
+                "elevenia": "prdWeight"
+            }
+        ]
+
++ Response 200 (application/json)
