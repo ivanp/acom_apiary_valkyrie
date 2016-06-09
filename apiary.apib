@@ -163,11 +163,29 @@ Create a new product to channel.
             }
 
 
-## Orders Collection [/orders]
+## Orders Collection [/orders{?status,from,to}]
 
 ### List All Orders [GET]
 
 Get all orders from channel.
+
++ Parameters
+    + status (enum[string], optional)
+        Status of the order
+        + Members
+            + `NEW`
+            + `ORDERED`
+            + `READY_TO_SHIP`
+            + `IN_TRANSIT`
+            + `FAILED_TO_DELIVER`
+            + `CANCELLED`
+            + `REJECTED`
+            + `COMPLETED`
+            + `VERIFY_FAILED`
+    + from (string, optional)
+        Specifying date range. Date in ISO8601 format (e.g. 2016-06-09)
+    + to (string, optional)
+        Specifying date range. Date in ISO8601 format (e.g. 2016-06-09)
 
 + Request
     + Headers
