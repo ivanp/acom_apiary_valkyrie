@@ -40,6 +40,17 @@ Submit login information (username and password, or API key)
                 "message": "invalid key"
             }
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 ## Products Collection [/products{?partnerId}]
 
 ### List All Products [GET]
@@ -164,7 +175,17 @@ Create a new product to channel.
                 "channelSku" : "ABCDEFGH"
             }
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
 
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 ## Orders Collection [/orders{?status,from,to}]
 
 ### List All Orders [GET]
@@ -248,6 +269,17 @@ Get all orders from channel.
             ]
 
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+
 ## Update Orders [/orders/{orderId}]
 
 ### Update an Orders Status [PATCH]
@@ -310,6 +342,17 @@ Update status of an order to market place
                 "trackingId" : "142054924480001"
             }
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 ## Accepting Orders [/orders/{orderId}/accept]
 
 ### Accept an order [POST]
@@ -335,7 +378,17 @@ Accept an order.
                 "message": "Order accepted"
             }
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
 
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 ## Categories Collection [/categories]
 
 ### Get categories [GET]
@@ -364,6 +417,17 @@ Get categories and mappings. If "acommerce" is null then it's not mapped yet.
                 }
             ]
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 ## Category Mapping [/categories/{channelCategoryId}/{acommerceCategoryId}]
 
 + Parameters
@@ -376,6 +440,17 @@ Set or replace categories mapping.
 
 + Response 200 (application/json)
 
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
+            
 
 ## Attributes Collection [/attributes]
 
@@ -401,3 +476,14 @@ Set or replace attributes mapping.
         ]
 
 + Response 200 (application/json)
+
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
