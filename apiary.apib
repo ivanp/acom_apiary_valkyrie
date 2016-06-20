@@ -299,39 +299,75 @@ Update status of an order to market place
 
     + Body
 
-            {
-                "orderStatus" : [
-                    {
-                        "orderStatus": "NEW",
-                        "updatedTime": "2015-11-17T08:26:38Z"
-                    },
-                    {
-                        "orderStatus": "IN_PROGRESS",
-                        "updatedTime": "2015-11-18T04:47:13Z"
-                    },
-                    {
-                        "orderStatus": "COMPLETED",
-                        "updatedTime": "2015-11-19T04:47:13Z"
-                    }
+            [
+              {
+                "orderId": "085695798275182",
+                "acommerceId": "ACOM085695798275182",
+                "partnerId": 1,
+                "orderCreatedTime": "2015-11-17T08:26:38Z",
+                "orderUpdatedTime": "2015-11-18T04:47:13Z",
+                "orderStatus": [
+                  {
+                    "orderStatus": "NEW",
+                    "updatedTime": "2015-11-17T08:26:38Z",
+                    "orderStatusDetail": null
+                  },
+                  {
+                    "orderStatus": "IN_PROGRESS",
+                    "updatedTime": "2015-11-18T04:47:13Z",
+                    "orderStatusDetail": null
+                  }
                 ],
-                "shipPackage" : {
-                    "statusHistory" : [
-                        {
-                            "shippingStatus": "PREPARING_DELIVERY",
-                            "updatedTime": "2015-11-17T09:19:56Z"
-                        },
-                        {
-                            "shippingStatus": "IN_TRANSIT",
-                            "trackingId" : "142054924480001",
-                            "updatedTime": "2015-11-18T09:19:56Z"
-                        },
-                        {
-                            "shippingStatus": "DELIVERED",
-                            "updatedTime": "2015-11-19T09:19:56Z"
-                        }
+                "orderDetailedStatus": [
+                  {
+                    "orderDetailedStatus": "NEW",
+                    "updatedTime": "2015-11-17T08:26:38Z"
+                  },
+                  {
+                    "orderDetailedStatus": "READY_TO_PICK",
+                    "updatedTime": "2015-11-17T09:19:56Z"
+                  },
+                  {
+                    "orderDetailedStatus": "QC_CHECKED",
+                    "updatedTime": "2015-11-18T03:48:54Z"
+                  },
+                  {
+                    "orderDetailedStatus": "READY_TO_SHIP",
+                    "updatedTime": "2015-11-18T03:49:37Z"
+                  },
+                  {
+                    "orderDetailedStatus": "IN_TRANSIT",
+                    "updatedTime": "2015-11-18T04:47:13Z"
+                  }
+                ],
+                "shipPackage": [
+                  {
+                    "trackingId": "142054924480001",
+                    "weight": "0.150",
+                    "deliveryAttempted": 1,
+                    "paymentType": "CASH_ON_DELIVERY",
+                    "shippingType": "STANDARD_2_4_DAYS",
+                    "shipmentReceiver": null,
+                    "statusHistory": [
+                      {
+                        "shippingStatus": "PREPARING_DELIVERY",
+                        "updatedTime": "2015-11-17T09:19:56Z",
+                        "shippingLocation": null,
+                        "shippingDetail": null,
+                        "shippingUpdatedTime": null
+                      },
+                      {
+                        "shippingStatus": "IN_TRANSIT",
+                        "updatedTime": "2015-11-18T04:47:13Z",
+                        "shippingLocation": null,
+                        "shippingDetail": null,
+                        "shippingUpdatedTime": null
+                      }
                     ]
-                }
-            }
+                  }
+                ]
+              }
+            ]
 
 + Response 200 (application/json)
 
