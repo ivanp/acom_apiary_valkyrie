@@ -50,6 +50,66 @@ Submit login information (username and password, or API key)
                 "message" :"Internal server error",
                 "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
             }
+
+## Inventory Collection [/stocks] 
+
+### Update sku qty [PATCH]
+
+Update sku qty to market place
+
++ Request (application/json)
+
+    + Headers
+        
+            x-channel-token: {CHANNEL_TOKEN}
+            x-partner-id: {PARTNER_ID}
+            Authorization: Bearer {TOKEN}
+
+    + Body
+
+            [{
+                "sku": "item0",
+                "updatedTime": "2015-08-27T14:15:24.284Z",
+                "qty": "10"
+            },
+            {
+                "sku": "item01",
+                "updatedTime": "2015-08-27T13:40:16.695Z",
+                "qty": "0"
+            },
+            {
+                "sku": "item02",
+                "updatedTime": "2015-08-27T13:40:16.695Z",
+                "qty": "0"
+            }]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [{
+                "sku": "item0",
+                "qty": "10"
+            },
+            {
+                "sku": "item01",
+                "qty": "0"
+            },
+            {
+                "sku": "item02",
+                "qty": "0"
+            }]
+
++ Response 551 (application/json)
+    When there is an error from the channel web service.
+
+    + Body
+            
+            {
+                "code" : "500",
+                "message" :"Internal server error",
+                "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
+            }
             
 ## Products Collection [/products{?partnerId}]
 
