@@ -51,9 +51,9 @@ Submit login information (username and password, or API key)
                 "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
             }
 
-## Inventory Collection [/stocks] 
+## Inventory Collection [/stocks/:sku] 
 
-### Update sku qty [PATCH]
+### Update SKU Quantity [PATCH]
 
 Update sku qty to market place
 
@@ -67,38 +67,19 @@ Update sku qty to market place
 
     + Body
 
-            [{
-                "sku": "item0",
+            {
                 "updatedTime": "2015-08-27T14:15:24.284Z",
-                "qty": "10"
-            },
-            {
-                "sku": "item01",
-                "updatedTime": "2015-08-27T13:40:16.695Z",
-                "qty": "0"
-            },
-            {
-                "sku": "item02",
-                "updatedTime": "2015-08-27T13:40:16.695Z",
-                "qty": "0"
-            }]
+                "qty": 10
+            }
 
 + Response 201 (application/json)
 
     + Body
 
-            [{
+            {
                 "sku": "item0",
                 "qty": "10"
-            },
-            {
-                "sku": "item01",
-                "qty": "0"
-            },
-            {
-                "sku": "item02",
-                "qty": "0"
-            }]
+            }
 
 + Response 551 (application/json)
     When there is an error from the channel web service.
@@ -359,7 +340,6 @@ Update status of an order to market place
 
     + Body
 
-            [
               {
                 "orderId": "085695798275182",
                 "acommerceId": "ACOM085695798275182",
@@ -427,9 +407,9 @@ Update status of an order to market place
                   }
                 ]
               }
-            ]
+            
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
     + Body
 
