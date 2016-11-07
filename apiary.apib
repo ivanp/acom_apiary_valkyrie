@@ -11,11 +11,13 @@ Check Valkyrie API status.
 
 ### Check status [GET]
 
-+ Response 200 (text/plain)
++ Response 200 (application/json)
 
     + Body
         
-            OK
+            {
+                "message": "ok"
+            }
 
 
 ## Authentication [/login]
@@ -512,15 +514,27 @@ Get categories and mappings. If "acommerce" is null then it's not mapped yet.
                 "body": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ClientMessage><resultCode>200</resultCode><message>Internal Server Error</message></ClientMessage>'
             }
             
-## Category Mapping [/categories/{channelCategoryId}/{acommerceCategoryId}]
 
-+ Parameters
-    + channelCategoryId (number) - ID of the channel's category ID
-    + acommerceCategoryId (number) - ID of aCommerce's category ID
-    
-### Update category mapping [POST]
+### Map categories [PATCH]
 
 Set or replace categories mapping.
+
++ Request (application/json)
+    
+    + Body
+    
+            [
+                {
+                    "acommerce": 1232,
+                    "catId": 9886
+                },
+                {
+                    "acommerce": 1244,
+                    "catId": 9889
+                }
+            ]
+
+
 
 + Response 200 (application/json)
 
