@@ -248,15 +248,12 @@ Get all orders from channel.
     + status (enum[string], optional)
         Status of the order
         + Members
-            + `NEW`
             + `ORDERED`
             + `READY_TO_SHIP`
             + `IN_TRANSIT`
             + `FAILED_TO_DELIVER`
             + `CANCELLED`
-            + `REJECTED`
             + `COMPLETED`
-            + `VERIFY_FAILED`
     + from (string, optional)
         Specifying date range. Date in ISO8601 format (e.g. 2016-06-09)
     + to (string, optional)
@@ -316,7 +313,8 @@ Get all orders from channel.
                             "qty": 2,
                             "subTotal": 60000
                         }
-                    ]
+                    ],
+                    "status": "ORDERED"
                 }
             ]
 
@@ -463,6 +461,14 @@ Accept an order.
     
             {
                 "message": "Order accepted"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "message": "Order already accepted"
             }
 
 + Response 551 (application/json)
